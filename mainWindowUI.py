@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'data/MainWindow.ui'
+# Form implementation generated from reading ui file 'data/UI/mainWindow.ui'
 #
 # Created by: PyQt6 UI code generator 6.9.1
 #
@@ -12,16 +12,49 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 600)
+        MainWindow.resize(1291, 668)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.image_lbl = QtWidgets.QLabel(parent=self.centralwidget)
-        self.image_lbl.setGeometry(QtCore.QRect(30, 30, 271, 421))
-        self.image_lbl.setText("")
-        self.image_lbl.setObjectName("image_lbl")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.gridLayout = QtWidgets.QGridLayout()
+        self.gridLayout.setObjectName("gridLayout")
+        self.graphicsView = QtWidgets.QGraphicsView(parent=self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.graphicsView.sizePolicy().hasHeightForWidth())
+        self.graphicsView.setSizePolicy(sizePolicy)
+        self.graphicsView.setObjectName("graphicsView")
+        self.gridLayout.addWidget(self.graphicsView, 0, 0, 1, 1)
+        self.diagonalReflection_btn = QtWidgets.QPushButton(parent=self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.diagonalReflection_btn.sizePolicy().hasHeightForWidth())
+        self.diagonalReflection_btn.setSizePolicy(sizePolicy)
+        self.diagonalReflection_btn.setObjectName("diagonalReflection_btn")
+        self.gridLayout.addWidget(self.diagonalReflection_btn, 0, 1, 1, 1)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.open_btn = QtWidgets.QPushButton(parent=self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.open_btn.sizePolicy().hasHeightForWidth())
+        self.open_btn.setSizePolicy(sizePolicy)
+        self.open_btn.setObjectName("open_btn")
+        self.horizontalLayout.addWidget(self.open_btn)
         self.save_btn = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.save_btn.setGeometry(QtCore.QRect(690, 550, 88, 24))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.save_btn.sizePolicy().hasHeightForWidth())
+        self.save_btn.setSizePolicy(sizePolicy)
         self.save_btn.setObjectName("save_btn")
+        self.horizontalLayout.addWidget(self.save_btn)
+        self.gridLayout.addLayout(self.horizontalLayout, 1, 1, 1, 1)
+        self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -30,4 +63,6 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Editor"))
+        self.diagonalReflection_btn.setText(_translate("MainWindow", "Diagonal reflection"))
+        self.open_btn.setText(_translate("MainWindow", "Open"))
         self.save_btn.setText(_translate("MainWindow", "Save"))
