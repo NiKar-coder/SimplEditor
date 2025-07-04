@@ -11,12 +11,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.editor = Editor()
         self.setupUi(self)
         self.save_btn.clicked.connect(self.save_image)
-        self.diagonalReflection_btn.clicked.connect(self.diagonalReflection)
         self.open_btn.clicked.connect(self.open_image)
         self.pixmap = QPixmap('data/images/img.jpeg')
         self.scene = QGraphicsScene()
         self.scene.addPixmap(self.pixmap)
         self.graphicsView.setScene(self.scene)
+        transposing_bar = self.menubar.addMenu("Transposing")
+        transposing_bar.addAction("Diagonal reflection").triggered.connect(
+            self.diagonalReflection)
 
     def open_image(self):
         self.img_name = QFileDialog.getOpenFileName(self, 'Open file',
