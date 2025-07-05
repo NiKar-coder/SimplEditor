@@ -4,6 +4,7 @@ from PyQt6.QtGui import QPixmap
 from editor import Editor
 import shutil
 
+
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, temp_dir):
         super().__init__()
