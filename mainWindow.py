@@ -18,19 +18,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         transposing_bar = self.menubar.addMenu("Transposing")
         transposing_bar.addAction("Diagonal reflection").triggered.connect(
             self.diagonalReflection)
+        transposing_bar.addAction("Vertical reflection").triggered.connect(
+            self.verticalReflection)
 
     def open_image(self):
         self.img_name = QFileDialog.getOpenFileName(self, 'Open file',
                                                     '/home/', "Image files (*.jpg *.jpeg)")[0]
         self.scene.clear()
         self.scene.addPixmap(
-            QPixmap(self.img_name))  # .scaled(self.graphicsView.size()))
+            QPixmap(self.img_name))
 
     def diagonalReflection(self):
         self.scene.clear()
         try:
             self.scene.addPixmap(
                 self.editor.diagonalReflection(self.img_name))
+        except Exception:
+            pass
+
+    def verticalReflection(self):
+        self.scene.clear()
+        try:
+            self.scene.addPixmap(
+                self.editor.verticalReflection(self.img_name))
         except Exception:
             pass
 

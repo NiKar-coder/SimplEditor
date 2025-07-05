@@ -1,6 +1,4 @@
-from PIL import Image
-# import os.path
-from PIL import ImageQt
+from PIL import Image, ImageQt
 
 
 class Editor:
@@ -10,3 +8,7 @@ class Editor:
     def diagonalReflection(self, img_name):
         return ImageQt.toqpixmap(Image.open(img_name).rotate(
             90).transpose(Image.FLIP_LEFT_RIGHT))
+
+    def verticalReflection(self, img_name):
+        return ImageQt.toqpixmap(Image.open(img_name)
+                                 .transpose(Image.FLIP_LEFT_RIGHT))
