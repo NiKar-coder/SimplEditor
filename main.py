@@ -3,7 +3,7 @@ import sys
 from PyQt6.QtWidgets import QApplication
 from mainWindow import MainWindow
 import qdarktheme
-# from pathlib import Path
+from PyQt6.QtGui import QIcon
 
 
 def except_hook(cls, exception, traceback):
@@ -16,9 +16,9 @@ print(sandbox)
 if __name__ == '__main__':
     qdarktheme.enable_hi_dpi()
     app = QApplication(sys.argv)
-    qdarktheme.setup_theme("dark", corner_shape="sharp",
+    qdarktheme.setup_theme("dark", corner_shape="rounded",
                            custom_colors={"primary": "#FFFFFF"})
-    # app.setWindowIcon(QtGui.QIcon(File('CarNumbers.ico').resource_path()))
+    app.setWindowIcon(QIcon('data/icons/icon.png'))
     ex = MainWindow(sandbox)
     ex.show()
     sys.excepthook = except_hook
