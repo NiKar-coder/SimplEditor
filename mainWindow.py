@@ -25,8 +25,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.img_name = QFileDialog.getOpenFileName(self, 'Open file',
                                                     '/home/', "Image files (*.jpg *.jpeg)")[0]
         self.scene.clear()
+        self.editor.open_image(self.img_name)
         self.scene.addPixmap(
             QPixmap(self.img_name))
+        self.img_name = f"data/images/temp/{self.img_name.split('/')[-1]}"
 
     def diagonalReflection(self):
         self.scene.clear()
