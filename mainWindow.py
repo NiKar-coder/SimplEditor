@@ -2,13 +2,14 @@ from PyQt6.QtWidgets import QMainWindow, QFileDialog, QGraphicsScene
 from mainWindowUI import Ui_MainWindow
 from PyQt6.QtGui import QPixmap
 from editor import Editor
-
+import shutil
 
 class MainWindow(QMainWindow, Ui_MainWindow):
-    def __init__(self):
+    def __init__(self, temp_dir):
         super().__init__()
+        self.temp_dir = temp_dir
         self.img_name = None
-        self.editor = Editor()
+        self.editor = Editor(self.temp_dir)
         self.setupUi(self)
         self.showMaximized()
         self.save_btn.clicked.connect(self.save_image)
@@ -28,7 +29,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.editor.open_image(self.img_name)
         self.scene.addPixmap(
             QPixmap(self.img_name))
-        self.img_name = f"data/images/temp/{self.img_name.split('/')[-1]}"
+        self.img_name = f"{self.temp_dir}/{self.img_name.split('/')[-1]}"
 
     def diagonalReflection(self):
         self.scene.clear()
@@ -45,6 +46,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.editor.verticalReflection(self.img_name))
         except Exception:
             pass
+
+    def closeEvent(self, event):
+        shutil.rmtree(self.temp_dir)
 
     def save_image(self):
         pass

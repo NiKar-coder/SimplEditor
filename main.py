@@ -1,13 +1,17 @@
+import tempfile
 import sys
-# from PyQt6 import QtGui
 from PyQt6.QtWidgets import QApplication
 from mainWindow import MainWindow
 import qdarktheme
+# from pathlib import Path
 
 
 def except_hook(cls, exception, traceback):
     sys.__excepthook__(cls, exception, traceback)
 
+
+sandbox = tempfile.mkdtemp()
+print(sandbox)
 
 if __name__ == '__main__':
     qdarktheme.enable_hi_dpi()
@@ -15,7 +19,7 @@ if __name__ == '__main__':
     qdarktheme.setup_theme("dark", corner_shape="sharp",
                            custom_colors={"primary": "#FFFFFF"})
     # app.setWindowIcon(QtGui.QIcon(File('CarNumbers.ico').resource_path()))
-    ex = MainWindow()
+    ex = MainWindow(sandbox)
     ex.show()
     sys.excepthook = except_hook
     sys.exit(app.exec())
