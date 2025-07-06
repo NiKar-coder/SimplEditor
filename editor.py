@@ -1,4 +1,4 @@
-from PIL import Image, ImageQt
+from PIL import Image
 
 
 class Editor:
