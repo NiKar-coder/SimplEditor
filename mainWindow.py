@@ -18,33 +18,49 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.scene = QGraphicsScene()
         self.graphicsView.setScene(self.scene)
         transposing_bar = self.menubar.addMenu("Transposing")
-        transposing_bar.addAction("Diagonal reflection").triggered.connect(
-            self.diagonalReflection)
         transposing_bar.addAction("Vertical reflection").triggered.connect(
             self.verticalReflection)
+        transposing_bar.addAction("Horizontal reflection").triggered.connect(
+            self.horizontalReflection)
+        transposing_bar.addAction("Diagonal reflection").triggered.connect(
+            self.diagonalReflection)
 
     def open_image(self):
-        self.img_name = QFileDialog.getOpenFileName(self, 'Open file',
-                                                    '/home/', "Image files (*.jpg *.jpeg)")[0]
-        self.scene.clear()
-        self.editor.open_image(self.img_name)
-        self.scene.addPixmap(
-            QPixmap(self.img_name))
-        self.img_name = f"{self.temp_dir}/{self.img_name.split('/')[-1]}"
+        try:
+            self.img_name = QFileDialog.getOpenFileName(self, 'Open file',
+                                                        '/home/', "Image files (*.jpg *.jpeg *.png)")[0]
+            self.scene.clear()
+            self.editor.open_image(self.img_name)
+            self.scene.addPixmap(
+                QPixmap(self.img_name))
+            self.img_name = f"{self.temp_dir}/{self.img_name.split('/')[-1]}"
+        except Exception:
+            pass
 
     def diagonalReflection(self):
         self.scene.clear()
         try:
+            self.editor.diagonalReflection(self.img_name)
             self.scene.addPixmap(
-                self.editor.diagonalReflection(self.img_name))
+                QPixmap(self.img_name))
         except Exception:
             pass
 
     def verticalReflection(self):
         self.scene.clear()
         try:
+            self.editor.verticalReflection(self.img_name)
             self.scene.addPixmap(
-                self.editor.verticalReflection(self.img_name))
+                QPixmap(self.img_name))
+        except Exception:
+            pass
+
+    def horizontalReflection(self):
+        self.scene.clear()
+        try:
+            self.editor.horizontalReflection(self.img_name)
+            self.scene.addPixmap(
+                QPixmap(self.img_name))
         except Exception:
             pass
 
