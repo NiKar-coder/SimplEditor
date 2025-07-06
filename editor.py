@@ -28,3 +28,7 @@ class Editor:
     def blur(self, img_name):
         img = Image.open(img_name).filter(ImageFilter.BLUR)
         self.save(img, img_name)
+
+    def findCountours(self, img_name):
+        img = Image.open(img_name).filter(ImageFilter.CONTOUR)
+        self.save(img, img_name)

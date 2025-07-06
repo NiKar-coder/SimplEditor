@@ -19,6 +19,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.graphicsView.setScene(self.scene)
         filters_bar = self.menubar.addMenu("Filters")
         filters_bar.addAction("Blur").triggered.connect(self.blur)
+        filters_bar.addAction("Find contours").triggered.connect(
+            self.findContours)
         transposing_bar = self.menubar.addMenu("Transposing")
         transposing_bar.addAction("Vertical reflection").triggered.connect(
             self.verticalReflection)
@@ -43,6 +45,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.scene.clear()
         try:
             self.editor.blur(self.img_name)
+            self.scene.addPixmap(
+                QPixmap(self.img_name))
+        except Exception:
+            pass
+
+    def findContours(self):
+        self.scene.clear()
+        try:
+            self.editor.findCountours(self.img_name)
             self.scene.addPixmap(
                 QPixmap(self.img_name))
         except Exception:
