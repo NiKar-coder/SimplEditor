@@ -17,6 +17,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.open_btn.clicked.connect(self.open_image)
         self.scene = QGraphicsScene()
         self.graphicsView.setScene(self.scene)
+        filters_bar = self.menubar.addMenu("Filters")
+        filters_bar.addAction("Blur").triggered.connect(self.blur)
         transposing_bar = self.menubar.addMenu("Transposing")
         transposing_bar.addAction("Vertical reflection").triggered.connect(
             self.verticalReflection)
@@ -34,6 +36,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.scene.addPixmap(
                 QPixmap(self.img_name))
             self.img_name = f"{self.temp_dir}/{self.img_name.split('/')[-1]}"
+        except Exception:
+            pass
+
+    def blur(self):
+        self.scene.clear()
+        try:
+            self.editor.blur(self.img_name)
+            self.scene.addPixmap(
+                QPixmap(self.img_name))
         except Exception:
             pass
 
