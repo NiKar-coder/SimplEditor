@@ -90,4 +90,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         shutil.rmtree(self.temp_dir)
 
     def save_image(self):
-        pass
+        try:
+            print(self.img_name)
+            path_, _ = QFileDialog.getSaveFileName(self, 'Save file',
+                                                   f'/home/{self.img_name.split("/")[-1]}',
+                                                   "Image files (*.jpg *.jpeg *.png)")
+            self.editor.saveFile(self.img_name, path_)
+
+        except Exception:
+            pass

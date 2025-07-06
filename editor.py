@@ -32,3 +32,7 @@ class Editor:
     def findCountours(self, img_name):
         img = Image.open(img_name).filter(ImageFilter.CONTOUR)
         self.save(img, img_name)
+
+    def saveFile(self, img_name, path):
+        img = Image.open(img_name)
+        img.save(path)
