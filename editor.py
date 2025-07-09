@@ -36,3 +36,7 @@ class Editor:
     def saveFile(self, img_name, path):
         img = Image.open(img_name)
         img.save(path)
+
+    def detail(self, img_name):
+        img = Image.open(img_name).filter(ImageFilter.DETAIL)
+        self.save(img, img_name)

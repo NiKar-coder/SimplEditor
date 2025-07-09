@@ -17,11 +17,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.open_btn.clicked.connect(self.open_image)
         self.scene = QGraphicsScene()
         self.graphicsView.setScene(self.scene)
+        transposing_bar = self.menubar.addMenu("Transposing")
         filters_bar = self.menubar.addMenu("Filters")
         filters_bar.addAction("Blur").triggered.connect(self.blur)
         filters_bar.addAction("Find contours").triggered.connect(
             self.findContours)
-        transposing_bar = self.menubar.addMenu("Transposing")
+        filters_bar.addAction("Detail").triggered.connect(self.detail)
         transposing_bar.addAction("Vertical reflection").triggered.connect(
             self.verticalReflection)
         transposing_bar.addAction("Horizontal reflection").triggered.connect(
@@ -97,5 +98,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                                    "Image files (*.jpg *.jpeg *.png)")
             self.editor.saveFile(self.img_name, path_)
 
+        except Exception:
+            pass
+
+    def detail(self):
+        self.scene.clear()
+        try:
+            self.editor.detail(self.img_name)
+            self.scene.addPixmap(
+                QPixmap(self.img_name))
         except Exception:
             pass
