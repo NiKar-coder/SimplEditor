@@ -20,9 +20,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         transposing_bar = self.menubar.addMenu("Transposing")
         filters_bar = self.menubar.addMenu("Filters")
         filters_bar.addAction("Blur").triggered.connect(self.blur)
+        filters_bar.addAction("Detail").triggered.connect(self.detail)
+        filters_bar.addAction("Enhance edges").triggered.connect(
+            self.enhanceEdges)
         filters_bar.addAction("Find contours").triggered.connect(
             self.findContours)
-        filters_bar.addAction("Detail").triggered.connect(self.detail)
         transposing_bar.addAction("Vertical reflection").triggered.connect(
             self.verticalReflection)
         transposing_bar.addAction("Horizontal reflection").triggered.connect(
@@ -39,6 +41,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.scene.addPixmap(
                 QPixmap(self.img_name))
             self.img_name = f"{self.temp_dir}/{self.img_name.split('/')[-1]}"
+        except Exception:
+            pass
+
+    def enhanceEdges(self):
+        self.scene.clear()
+        try:
+            self.editor.enhanceEdges(self.img_name)
+            self.scene.addPixmap(
+                QPixmap(self.img_name))
         except Exception:
             pass
 

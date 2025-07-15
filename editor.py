@@ -40,3 +40,7 @@ class Editor:
     def detail(self, img_name):
         img = Image.open(img_name).filter(ImageFilter.DETAIL)
         self.save(img, img_name)
+
+    def enhanceEdges(self, img_name):
+        img = Image.open(img_name).filter(ImageFilter.EDGE_ENHANCE)
+        self.save(img, img_name)
