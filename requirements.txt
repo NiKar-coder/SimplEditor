@@ -1,0 +1,6 @@
+darkdetect==0.7.1
+pillow==11.3.0
+PyQt6==6.9.1
+PyQt6-Qt6==6.9.1
+PyQt6_sip==13.10.2
+PyQtDarkTheme-fork==2.3.4
