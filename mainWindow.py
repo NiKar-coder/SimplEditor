@@ -35,7 +35,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def open_image(self):
         try:
             self.img_name = QFileDialog.getOpenFileName(self, 'Open file',
-                                                        '/home/', "Image files (*.jpg *.jpeg *.png)")[0]
+                                                        'C:/', "Image files (*.jpg *.jpeg *.png)")[0]
             self.scene.clear()
             self.editor.open_image(self.img_name)
             self.scene.addPixmap(
@@ -105,7 +105,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         try:
             print(self.img_name)
             path_, _ = QFileDialog.getSaveFileName(self, 'Save file',
-                                                   f'/home/{self.img_name.split("/")[-1]}',
+                                                   f'С:/{self.img_name.split("/")[-1]}',
                                                    "Image files (*.jpg *.jpeg *.png)")
             self.editor.saveFile(self.img_name, path_)
 
