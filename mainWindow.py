@@ -18,6 +18,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.shortcut_o.activated.connect(self.open_image)
         self.shortcut_s = QShortcut(QKeySequence("Ctrl+s"), self)
         self.shortcut_s.activated.connect(self.save_image)
+        self.shortcut_z = QShortcut(QKeySequence("Ctrl+z"), self)
+        self.shortcut_z.activated.connect(self.discard)
         self.save_btn.clicked.connect(self.save_image)
         self.open_btn.clicked.connect(self.open_image)
         self.scene = QGraphicsScene()
@@ -36,6 +38,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.horizontalReflection)
         transposing_bar.addAction("Diagonal reflection").triggered.connect(
             self.diagonalReflection)
+
+    @pyqtSlot()
+    def discard(self):
+        try:
+            tmp = self.img_name.split("/")[-1].split(".")
+            img_n = tmp[0]
+            img_e = tmp[-1]
+            self.scene.clear()
+            self.img_name = f'{self.temp_dir}/{img_n}_old.{img_e}'
+            self.scene.addPixmap(
+                QPixmap(self.img_name))
+        except Exception:
+            pass
 
     @pyqtSlot()
     def open_image(self):
