@@ -19,7 +19,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     qdarktheme.setup_theme("dark", corner_shape="sharp",
                            custom_colors={"primary": "#FFFFFF"})
-    app.setWindowIcon(QtGui.QIcon(File('data/icons/icon.png').resource_path()))
+    app.setWindowIcon(QtGui.QIcon(File('icon.png').resource_path()))
     ex = MainWindow(sandbox)
     ex.show()
     sys.excepthook = except_hook
