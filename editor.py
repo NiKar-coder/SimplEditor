@@ -13,9 +13,14 @@ class Editor:
         self.save(img, img_name)
 
     def diagonalReflection(self, img_name):
-        img = Image.open(img_name).rotate(
+        tmp = img_name.split("/")[-1].split(".")
+        img_n = tmp[0]
+        img_e = tmp[-1]
+        img_ = Image.open(img_name)
+        img = img_.rotate(
             90).transpose(Image.FLIP_LEFT_RIGHT)
-        self.save(img, img_name)
+        self.save(img_, f'{img_n}_old.{img_e}')
+        img.save(img, f'{img_n}.{img_e}')
 
     def verticalReflection(self, img_name):
         img = Image.open(img_name).transpose(Image.FLIP_TOP_BOTTOM)
