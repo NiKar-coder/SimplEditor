@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QMainWindow, QFileDialog, QGraphicsScene
 from mainWindowUI import Ui_MainWindow
-from PyQt6.QtGui import QPixmap
+from PyQt6.QtCore import pyqtSlot
+from PyQt6.QtGui import QPixmap, QKeySequence, QShortcut
 from editor import Editor
 import shutil
 
@@ -13,6 +14,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.editor = Editor(self.temp_dir)
         self.setupUi(self)
         self.showMaximized()
+        self.shortcut_o = QShortcut(QKeySequence("Ctrl+O"), self)
+        self.shortcut_o.activated.connect(self.open_image)
+        self.shortcut_s = QShortcut(QKeySequence("Ctrl+s"), self)
+        self.shortcut_s.activated.connect(self.save_image)
         self.save_btn.clicked.connect(self.save_image)
         self.open_btn.clicked.connect(self.open_image)
         self.scene = QGraphicsScene()
@@ -32,6 +37,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         transposing_bar.addAction("Diagonal reflection").triggered.connect(
             self.diagonalReflection)
 
+    @pyqtSlot()
     def open_image(self):
         try:
             self.img_name = QFileDialog.getOpenFileName(self, 'Open file',
@@ -99,8 +105,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             pass
 
     def closeEvent(self, event):
-        shutil.rmtree(self.temp_dir)
+        try:
+            shutil.rmtree(self.temp_dir)
+        except Exception:
+            pass
 
+    @pyqtSlot()
     def save_image(self):
         try:
             print(self.img_name)
