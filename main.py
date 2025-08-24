@@ -3,7 +3,8 @@ import sys
 from PyQt6.QtWidgets import QApplication
 from mainWindow import MainWindow
 import qdarktheme
-from PyQt6.QtGui import QIcon
+from file import File
+from PyQt6 import QtGui
 
 
 def except_hook(cls, exception, traceback):
@@ -18,7 +19,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     qdarktheme.setup_theme("dark", corner_shape="sharp",
                            custom_colors={"primary": "#FFFFFF"})
-    app.setWindowIcon(QIcon('data/icons/icon.png'))
+    app.setWindowIcon(QtGui.QIcon(File('data/icons/icon.png').resource_path()))
     ex = MainWindow(sandbox)
     ex.show()
     sys.excepthook = except_hook
