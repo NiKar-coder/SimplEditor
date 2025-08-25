@@ -26,18 +26,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.graphicsView.setScene(self.scene)
         transposing_bar = self.menubar.addMenu("Transposing")
         filters_bar = self.menubar.addMenu("Filters")
-        filters_bar.addAction("Blur").triggered.connect(self.blur)
+        blur_bar = filters_bar.addMenu("Blur")
+        blur_bar.addAction("Blur").triggered.connect(self.blur)
         filters_bar.addAction("Detail").triggered.connect(self.detail)
         filters_bar.addAction("Enhance edges").triggered.connect(
             self.enhanceEdges)
         filters_bar.addAction("Find contours").triggered.connect(
             self.findContours)
+        blur_bar.addAction("Gaussian blur").triggered.connect(self.g_blur)
         transposing_bar.addAction("Vertical reflection").triggered.connect(
             self.verticalReflection)
         transposing_bar.addAction("Horizontal reflection").triggered.connect(
             self.horizontalReflection)
         transposing_bar.addAction("Diagonal reflection").triggered.connect(
             self.diagonalReflection)
+
+    def g_blur(self):
+        self.scene.clear()
+        try:
+            self.editor.gaussianBlur(self.img_name)
+            self.scene.addPixmap(
+                QPixmap(self.img_name))
+        except Exception:
+            pass
 
     @pyqtSlot()
     def discard(self):
