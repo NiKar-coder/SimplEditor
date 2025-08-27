@@ -166,4 +166,3 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 QPixmap(self.img_name))
         except Exception:
             pass
-#
