@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### 📚 Documentation
+
+- Update documentation
+
 ## [0.0.4] - 2025-08-27
 
 ### 🚀 Features
