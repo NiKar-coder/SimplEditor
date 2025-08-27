@@ -34,12 +34,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         filters_bar.addAction("Find contours").triggered.connect(
             self.findContours)
         blur_bar.addAction("Gaussian blur").triggered.connect(self.g_blur)
+        blur_bar.addAction("Box blur").triggered.connect(self.g_blur)
         transposing_bar.addAction("Vertical reflection").triggered.connect(
             self.verticalReflection)
         transposing_bar.addAction("Horizontal reflection").triggered.connect(
             self.horizontalReflection)
         transposing_bar.addAction("Diagonal reflection").triggered.connect(
             self.diagonalReflection)
+
+    def b_blur(self):
+        self.scene.clear()
+        try:
+            self.editor.boxBlur(self.img_name)
+            self.scene.addPixmap(
+                QPixmap(self.img_name))
+        except Exception:
+            pass
 
     def g_blur(self):
         self.scene.clear()
