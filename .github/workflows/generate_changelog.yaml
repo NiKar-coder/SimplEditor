@@ -47,4 +47,4 @@ jobs:
         git config --global user.email 'github-actions@github.com'
         git add CHANGELOG.md
         git commit -m "Обновление CHANGELOG.md"
-        git push git@github.com:NiKar-coder/SimplEditor.git HEAD:main
+        git push https://github.com/NiKar-coder/SimplEditor.git HEAD:main
