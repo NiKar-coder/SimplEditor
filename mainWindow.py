@@ -4,7 +4,6 @@ from PyQt6.QtCore import pyqtSlot
 from PyQt6.QtGui import QPixmap, QKeySequence, QShortcut
 from editor import Editor
 import shutil
-#
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
