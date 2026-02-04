@@ -3,8 +3,7 @@ import sys
 from PyQt6.QtWidgets import QApplication
 from mainWindow import MainWindow
 import qdarktheme
-from file import File
-from PyQt6 import QtGui
+from PyQt6.QtGui import QPalette
 
 
 def except_hook(cls, exception, traceback):
@@ -15,11 +14,11 @@ sandbox = tempfile.mkdtemp()
 print(sandbox)
 
 if __name__ == '__main__':
-    qdarktheme.enable_hi_dpi()
     app = QApplication(sys.argv)
-    qdarktheme.setup_theme("dark", corner_shape="sharp",
-                           custom_colors={"primary": "#FFFFFF"})
-    app.setWindowIcon(QtGui.QIcon(File('data/icons/icon.png').resource_path()))
+    dark_palette = qdarktheme.load_palette()
+    palette = app.palette()
+    palette.setColor(QPalette.ColorRole.Link, dark_palette.link().color())
+    app.setPalette(palette)
     ex = MainWindow(sandbox)
     ex.show()
     sys.excepthook = except_hook
